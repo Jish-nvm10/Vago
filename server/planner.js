@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const Groq = require("groq-sdk");
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../authMiddleware");
 
 const router = express.Router();
 
