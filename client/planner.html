@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>AI Planner - Vago</title>
+
+  <link rel="stylesheet"
+        href="css/styles.css">
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- =========================
+       PREMIUM NAVBAR
+  ========================== -->
+
+  <nav class="premium-navbar">
+
+    <div class="nav-left">
+
+      <div class="logo-circle">
+        ✈
+      </div>
+
+      <div class="logo-text">
+
+        <h2>Vago</h2>
+
+        <span>AI Travel Planner</span>
+
+      </div>
+
+    </div>
+
+    <div class="nav-right">
+
+      <a href="dashboard.html"
+         class="nav-link">
+        Dashboard
+      </a>
+
+      <a href="#"
+         onclick="logout()"
+         class="logout-btn">
+        Logout
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- =========================
+       MAIN PLANNER SECTION
+  ========================== -->
+
+  <section class="planner-page">
+
+
+    <!-- =========================
+         CREATE NEW TRIP
+    ========================== -->
+
+    <div class="card planner-card">
+
+      <div class="section-title">
+
+        <h2>Create New Trip ✈</h2>
+
+        <p>
+          Build your personalized AI-powered travel itinerary.
+        </p>
+
+      </div>
+
+      <input
+        type="text"
+        id="destination"
+        placeholder="Destination"
+      >
+
+      <input
+        type="number"
+        id="budget"
+        placeholder="Budget (INR)"
+      >
+
+      <input
+        type="number"
+        id="days"
+        placeholder="Number of Days"
+      >
+
+      <input
+      type="number"
+      id="travelers"
+      placeholder="Number of Travelers"
+    >
+
+      <select id="travelType">
+
+        <option>Budget</option>
+
+        <option>Family</option>
+
+        <option>Luxury</option>
+
+        <option>Solo</option>
+
+      </select>
+
+      <textarea
+        id="preferences"
+        placeholder="Preferences (food, adventure, relaxation...)"
+      ></textarea>
+
+      <button
+        class="btn generate-btn"
+        onclick="generatePlan()"
+      >
+        ✨ Generate AI Plan
+      </button>
+
+    </div>
+
+
+
+    <!-- =========================
+     AI ITINERARY
+========================= -->
+
+<div class="card itinerary-card">
+
+  <div class="section-title">
+
+    <h2>Your AI Itinerary 🌍</h2>
+
+    <p>
+      Your smart personalized travel plan will appear here.
+    </p>
+
+  </div>
+
+  <div id="loading"
+       style="display:none;"
+       class="loading-text">
+
+    ✨ Generating your AI itinerary...
+
+  </div>
+
+  <div id="result"
+       class="itinerary-output"></div>
+  <div
+  id="budgetAdvice"
+  class="budget-advice"
+  style="display:none;"
+></div>
+
+  
+
+
+
+  <!-- =========================
+       POST GENERATION CONTENT
+  ========================== -->
+
+  <div
+    id="postGenerationContent"
+    style="display:none;"
+  >
+
+    <!-- =========================
+         RECOMMENDED STAYS
+    ========================== -->
+
+    <div class="recommend-section">
+
+      <h3>
+        🏨 Recommended Stays
+      </h3>
+
+      <div class="recommend-grid">
+
+        <div class="recommend-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+          >
+
+          <h4>Luxury Resort</h4>
+
+          <p>₹4500/night</p>
+
+          <a
+  class="hotel-link"
+  target="_blank"
+>
+
+  <button class="small-btn">
+    Book Stay
+  </button>
+
+</a>
+
+        </div>
+
+        <div class="recommend-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"
+          >
+
+          <h4>Budget Hotel</h4>
+
+          <p>₹1800/night</p>
+
+          <a
+          class="hotel-link"
+          target="_blank"
+        >
+
+  <button class="small-btn">
+    Book Stay
+  </button>
+
+</a>
+
+        </div>
+
+        <div class="recommend-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+          >
+
+          <h4>Family Lodge</h4>
+
+          <p>₹2500/night</p>
+
+          <a
+  class="hotel-link"
+  target="_blank"
+>
+
+  <button class="small-btn">
+    Book Stay
+  </button>
+
+</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         TRANSPORT OPTIONS
+    ========================== -->
+
+    <div class="recommend-section">
+
+      <h3>
+        ✈ Recommended Transport
+      </h3>
+
+      <div class="transport-grid">
+
+        <div class="transport-card">
+
+          <h4>Flight</h4>
+
+          <p>Fastest option</p>
+
+          <span>₹5200</span>
+
+          <a
+  id="flightLink"
+  target="_blank"
+>
+
+  <button class="small-btn">
+    Book Flight
+  </button>
+
+</a>
+
+        </div>
+
+        <div class="transport-card">
+
+          <h4>Train</h4>
+
+          <p>Budget friendly</p>
+
+          <span>₹850</span>
+
+          <a
+  id="trainLink"
+  target="_blank"
+>
+
+  <button class="small-btn">
+    Book Train
+  </button>
+
+</a>
+
+        </div>
+
+        <div class="transport-card">
+
+          <h4>Bus</h4>
+
+          <p>Comfort sleeper</p>
+
+          <span>₹1200</span>
+
+          <a
+  id="busLink"
+  target="_blank"
+>
+
+  <button class="small-btn">
+    Book Bus
+  </button>
+
+</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+    <!-- =========================
+         EXPENSE TRACKER
+    ========================== -->
+
+    <div class="card planner-card">
+
+      <div class="section-title">
+
+        <h2>Expense Tracker 💰</h2>
+
+        <p>
+          Track your travel spending in real time.
+        </p>
+
+      </div>
+
+      <input
+        type="number"
+        id="expenseAmount"
+        placeholder="Expense Amount (INR)"
+      >
+
+      <select id="expenseCategory">
+
+        <option>Stay</option>
+
+        <option>Food</option>
+
+        <option>Transport</option>
+
+        <option>Activities</option>
+
+      </select>
+
+      <button
+        class="btn"
+        onclick="addExpense()"
+      >
+        Add Expense
+      </button>
+
+
+      <!-- STATS -->
+
+      <div class="expense-stats">
+
+        <div class="expense-box">
+
+          <span>Total Spent</span>
+
+          <h3>
+            ₹<span id="totalSpent">0</span>
+          </h3>
+
+        </div>
+
+        <div class="expense-box">
+
+          <span>Remaining Budget</span>
+
+          <h3>
+            ₹<span id="remainingBudget">0</span>
+          </h3>
+
+        </div>
+
+      </div>
+
+
+      <!-- PROGRESS BAR -->
+
+      <div class="progress-bar">
+
+        <div class="progress-fill"
+             id="budgetProgress"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+   SCRIPT
+========================= -->
+
+<script src="./js/app.js"></script>
+
+</body>
+</html>
+
+
+
+  

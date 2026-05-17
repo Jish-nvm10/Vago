@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Vago Dashboard</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body onload="loadDashboard()">
+
+  <!-- NAVBAR -->
+  <nav class="premium-navbar">
+
+    <div class="nav-left">
+  
+      <div class="logo-circle">
+        ✈
+      </div>
+  
+      <div class="logo-text">
+        <h2>Vago</h2>
+        <span>AI Travel Planner</span>
+      </div>
+  
+    </div>
+  
+    <div class="nav-right">
+
+      <div id="planBadge"
+           class="plan-badge">
+      </div>
+    
+      <a href="premium.html"
+         class="upgrade-btn">
+        👑 Upgrade
+      </a>
+    
+      <a href="#"
+         onclick="logout()"
+         class="logout-btn">
+        Logout
+      </a>
+    
+    </div>
+  
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="dashboard-hero">
+
+    <div class="hero-overlay">
+
+      <h1>
+        Explore Smarter with Vago
+      </h1>
+
+      <p>
+        AI-powered travel planning with budget intelligence.
+      </p>
+
+      <a href="planner.html">
+        <button class="btn">
+          Start Planning
+        </button>
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+     UPCOMING TRIP BANNER
+========================= -->
+
+<div
+id="upcomingBanner"
+class="upcoming-banner"
+style="display:none;"
+>
+
+<div>
+
+  <h2 id="bannerDestination">
+    Goa Trip ✈
+  </h2>
+
+  <p id="bannerDetails">
+    4 Days • Family • ₹12000
+  </p>
+
+</div>
+
+<a href="planner.html">
+
+  <button class="banner-btn">
+    View Trip
+  </button>
+
+</a>
+
+</div>
+
+<!-- =========================
+     TRIP TIMELINE
+========================= -->
+
+<div class="timeline-card">
+
+  <h2>
+    🗺️ Travel Journey
+  </h2>
+
+  <div class="timeline">
+
+    <div class="timeline-step active">
+
+      <div class="timeline-circle">
+        ✓
+      </div>
+
+      <p>
+        Trip Planned
+      </p>
+
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div class="timeline-step active">
+
+      <div class="timeline-circle">
+        ✓
+      </div>
+
+      <p>
+        Itinerary Generated
+      </p>
+
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div
+      id="activeStep"
+      class="timeline-step"
+    >
+
+      <div class="timeline-circle">
+        ✈
+      </div>
+
+      <p>
+        Trip Active
+      </p>
+
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div
+      id="completedStep"
+      class="timeline-step"
+    >
+
+      <div class="timeline-circle">
+        ★
+      </div>
+
+      <p>
+        Trip Completed
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  <!-- DASHBOARD -->
+  <section class="dashboard">
+
+    <!-- EXPENSE TRACKER -->
+
+<div class="card">
+
+  <h2>
+    💰 Expense Tracker
+  </h2>
+
+  <input
+    type="number"
+    id="expenseAmount"
+    placeholder="Expense Amount (INR)"
+  >
+
+  <select id="expenseCategory">
+
+    <option>Stay</option>
+
+    <option>Food</option>
+
+    <option>Transport</option>
+
+    <option>Activities</option>
+
+  </select>
+
+  <button
+    class="btn"
+    onclick="addExpense()"
+  >
+    Add Expense
+  </button>
+
+
+  <!-- STATS -->
+
+  <div class="expense-stats">
+
+    <div class="expense-box">
+
+      <span>Total Spent</span>
+
+      <h3>
+        ₹<span id="totalSpent">0</span>
+      </h3>
+
+    </div>
+
+    <div class="expense-box">
+
+      <span>Remaining Budget</span>
+
+      <h3>
+        ₹<span id="remainingBudget">0</span>
+      </h3>
+
+    </div>
+
+  </div>
+
+
+  <!-- PROGRESS BAR -->
+
+  <div class="progress-bar">
+
+    <div
+      class="progress-fill"
+      id="budgetProgress"
+    ></div>
+
+  </div>
+
+</div>
+
+    <!-- ACTIVE TRIP -->
+  
+    <div class="card">
+  
+      <h2>
+        🌍 Current Active Trip
+      </h2>
+  
+      <div id="activeTrip">
+
+        <p>
+          No active trip currently.
+        </p>
+      
+      </div>
+      
+      <div
+        id="completeTripWrapper"
+        style="display:none;"
+      >
+      
+        <button
+          class="complete-trip-btn"
+          onclick="completeTrip()"
+        >
+          ✅ Complete Trip
+        </button>
+      
+      </div>
+  
+  
+  
+    <!-- COMPLETED TRIP -->
+  
+    <div class="card">
+  
+      <h2>
+        ✅ Last Completed Trip
+      </h2>
+  
+      <div id="latestTrip">
+  
+        <p>
+          No completed trips yet.
+        </p>
+  
+      </div>
+  
+    </div>
+  
+  
+  
+    <!-- TOTAL TRIPS -->
+  
+    <div class="card">
+  
+      <h2>
+        📌 Total Trips
+      </h2>
+  
+      <h1 id="tripCount">
+        0
+      </h1>
+  
+    </div>
+  
+  </section>
+
+
+  <!-- FEATURES -->
+  <section class="features-section">
+
+    <div class="feature-card">
+      <h3>🧠 AI Itinerary</h3>
+      <p>Generate smart travel plans instantly.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>💰 Budget Tracking</h3>
+      <p>Track expenses and control spending.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🌍 Personalized Trips</h3>
+      <p>Customized journeys for every traveler.</p>
+    </div>
+
+  </section>
+
+  <!-- =========================
+       EXPERIENCE MODAL
+  ========================== -->
+
+  <div
+    id="experienceModal"
+    class="experience-modal"
+    style="display:none;"
+  >
+
+    <div class="experience-box">
+
+      <h2>
+        🎉 Trip Completed!
+      </h2>
+
+      <p>
+        Share your experience with Vago
+        (optional).
+      </p>
+
+      <textarea
+        id="tripExperience"
+        placeholder="How was your trip experience?"
+      ></textarea>
+
+      <button
+        class="btn"
+        onclick="submitExperience()"
+      >
+        Submit & Continue
+      </button>
+
+      <button
+        class="skip-btn"
+        onclick="skipExperience()"
+      >
+        Skip
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
