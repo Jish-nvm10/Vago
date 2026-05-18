@@ -1,4 +1,4 @@
-const API_URL = "https://vago-w8cu.onrender.com";
+const API_URL = "https://vago-w8cu.onrender.com/api";
 
 /* =========================
    DEFAULT USER PLAN
