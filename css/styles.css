@@ -1842,17 +1842,17 @@ a {
 
 .site-logo {
 
-  width: 72px;
-  height: 72px;
+  width: 85px;
+  height: 85px;
 
   border-radius: 50%;
 
   object-fit: cover;
 
-  border: 3px solid rgba(255,255,255,0.7);
+  border: 4px solid rgba(255,255,255,0.7);
 
   box-shadow:
-    0 6px 18px rgba(0,0,0,0.15);
+    0 8px 24px rgba(0,0,0,0.18);
 
   background: white;
 }
