@@ -1828,19 +1828,33 @@ a {
       0.3
     );
 }
+/* =========================
+   LOGO
+========================= */
+
 .logo-wrapper {
 
   display: flex;
   align-items: center;
+  justify-content: center;
 
 }
 
 .site-logo {
 
-  height: 70px;
-  width: auto;
-  object-fit: contain;
+  width: 72px;
+  height: 72px;
 
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 3px solid rgba(255,255,255,0.7);
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.15);
+
+  background: white;
 }
 /* =========================
    CONTACT PAGE
